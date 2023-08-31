@@ -1,0 +1,124 @@
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 60px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo__img {
+  width: 40px;
+  margin-right: 15px;
+}
+
+.logo__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.logo__title {
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.logo__description {
+  color: #7b7b7b;
+}
+
+.loginFormWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+
+
+.userCart {
+  background: #fe5f1e;
+  border-radius: 20px;
+}
+.userCart .fa-rub {
+  color: #fff;
+}
+
+button.userCart__cartLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  padding: 15px 15px;
+}
+.userCart__cartLink:hover {
+  background-color: #f24701;
+}
+
+.userCart__totalCash:first-child, .userCart__totalGoods:first-child {
+  border-right: 1px solid #fff;
+}
+
+.userCart__totalCash {
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.totalCashCount {
+  color: #fff;
+  font-size: 20px;
+  margin: 0 5px;
+}
+
+.userCart__totalGoods {
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+.totalGoodsCount {
+  color: #fff;
+  font-size: 20px;
+  margin: 0 5px;
+}
+
+.fa-shopping-cart {
+  color: #fff;
+  font-size: 2em;
+}
+.authInfo{
+  display: flex;
+  flex-direction: column;
+}
+.userEmail{
+  color: #000;
+  margin-bottom: 10px;
+}
+
+
+
+@media all and (max-width: 950px) {
+  .header {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .search {
+    width: 90%;
+  }
+}

@@ -1,0 +1,32 @@
+.formWrapper{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.form{  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 20px;
+}
+.form__title{
+  color: #000;
+  margin-bottom: 10px 
+}
+.form__field{
+  padding: 8px 16px;
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.form__button{
+  padding: 8px 16px;
+  margin: 5px 0;
+  background: 0;
+  border: 0;
+  color: #000
+}

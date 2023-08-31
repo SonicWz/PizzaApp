@@ -1,0 +1,151 @@
+
+.category {
+  padding: 20px 60px;
+}
+
+.category__title {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.category__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.category__item {
+  margin: 10px 5px;
+  background: none;
+  padding: 20px 0;
+}
+
+.category__link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.item__img {
+  max-width: 420px;
+}
+
+.item__title {
+  font-weight: 700;
+  font-size: 24px;
+  margin: 10px 0;
+  color: #000;
+}
+
+.item__details {
+  padding: 5px;
+  border-radius: 5px;
+  background: #f3f3f3;
+}
+
+.item__type, .item__size {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item__type span, .item__size span {
+  display: block;
+  margin: 5px 2px;
+  padding: 5px 10px;
+  background: transparent;
+  color: #000;
+  border-radius: 5px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  text-align: center;
+  flex-grow: 1;
+}
+.item__type span.active, .item__size span.active {
+  padding: 5px 10px;
+  background: #fff;
+}
+
+.item__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.item__price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+}
+.item__price .fa-rub {
+  font-size: 24px;
+  margin: 0 5px;
+}
+
+.item__add {
+  border-color: #fe5f1e;
+  background: transparent;
+  color: #fe5f1e;
+  font-weight: 600;
+}
+.item__add:hover {
+  border-color: #fe5f1e;
+  background-color: #fe5f1e;
+  color: #fff;
+}
+.item__add:hover .item__addedCount {
+  background-color: #fff;
+  color: #fe5f1e;
+}
+
+.item__addedCount {
+  background: #fe5f1e;
+  border-radius: 50%;
+  color: #fff;
+  padding: 0px 6px;
+  margin-left: 5px;
+  text-align: center;
+  font-size: 16px;
+  transition: all 0.5s ease;
+}
+
+.category__list_current {
+  justify-content: center;
+}
+
+.category_single .item__img {
+  max-width: 100%;
+}
+
+
+@media all and (max-width: 1150px) {
+  .category__title {
+    text-align: center;
+  }
+  .item__img {
+    max-width: 350px;
+  }
+}
+
+@media all and (max-width: 950px) {
+  .category__list {
+    justify-content: center;
+  }
+  .item__img {
+    max-width: 100%;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .product__info {
+    align-self: flex-start;
+    width: 100%;
+  }
+  .removeBtnWrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

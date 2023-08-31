@@ -1,0 +1,94 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Nunito, Roboto, system-ui, Tahoma, sans-serif;
+}
+
+.wrapper {
+  background: #ffdf8c;
+  padding: 40px 40px;
+}
+
+.container {
+  background: #fff;
+  border-radius: 10px;
+  min-height: 100vh;
+}
+
+.category {
+  padding: 20px 60px;
+}
+.errorTitleWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.errorTitle {
+  font-size: 22px;
+  padding: 10px 20px;
+}
+.link{
+  color: #fe5f1e;
+}
+.btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #000;
+  border: 1px solid transparent;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  font-size: 16px;
+  background: #f9f9f9;
+  font-weight: 700;
+}
+.btn:hover {
+  background-color: #ececec;
+}
+
+.btn_active {
+  background-color: #000;
+  color: #fff;
+}
+.btn_active:hover {
+  background-color: #000;
+}
+
+.btn_action {
+  background-color: #fe5f1e;
+  border-color: #fe5f1e;
+  color: #fff;
+}
+.btn_action:hover {
+  background-color: #f24701;
+}
+
+.btn_inaction {
+  color: #ddd;
+  border-color: #ddd;
+  background-color: transparent;
+}
+.btn_inaction:hover {
+  color: #fff;
+  background-color: #000;
+  border-color: #000;
+}
+
+.goBackBtnWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+@media all and (max-width: 768px) {
+  .wrapper {
+    padding: 0;
+  }
+  .container {
+    border-radius: 0;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

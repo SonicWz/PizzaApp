@@ -1,0 +1,22 @@
+.category__item {
+  margin: 10px 5px;
+  background: none;
+  padding: 20px 0;
+}
+
+.category__link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.item__img {
+  max-width: 420px;
+}
+
+.item__title {
+  font-weight: 700;
+  font-size: 24px;
+  margin: 10px 0;
+  color: #000;
+}

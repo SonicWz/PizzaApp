@@ -1,0 +1,18 @@
+.category__title {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.category__list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+@media all and (max-width: 950px) {
+  .category__list {
+    justify-content: center;
+  }
+}
