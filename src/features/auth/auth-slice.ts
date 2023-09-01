@@ -90,7 +90,6 @@ export const authSlice = createSlice({
     });
     builder.addCase(signIn.rejected, (state, action: any) => {
       state.isLoading = false;
-      
       let error = '';
       switch (action.payload.code) {
         case ('auth/missing-password'): { error = 'Неправильный логин/пароль'; break; }
@@ -100,7 +99,6 @@ export const authSlice = createSlice({
         default: { break; }
       }
       state.error = error;  
-      debugger
     });
 
     builder.addCase(signUp.fulfilled, (state, action) => {
@@ -123,7 +121,6 @@ export const authSlice = createSlice({
         default: { break; }
       }
       state.error = error;
-      debugger
     });
   },
 });
