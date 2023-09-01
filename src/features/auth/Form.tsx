@@ -25,7 +25,7 @@ const Form = ({ title, submitTitle, handleClick }: IForm) => {
       setMessage('');
       handleClick(email, pass);
     } else if (!regEx.test(email) && email !== '""') {
-      setMessage('Email is Not Valid');
+      setMessage('Email неподходящего формата');
     } else {
       setMessage('');
     }
