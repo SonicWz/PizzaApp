@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
@@ -8,13 +8,21 @@ import { signUp } from './auth-slice';
 import styles from './Form.module.scss';
 
 import Form from './Form';
+import { useEffect } from 'react';
 
 const SignUpPage = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const signUpUser = (email: string, password: string) => {
     dispatch(signUp({ email, password }));
   };
-  const { error } = useAppSelector(state => state.auth);
+  const { email, error } = useAppSelector(state => state.auth);
+
+  useEffect(() => {
+    if (email){
+      navigate('/');
+    }
+  }, [email]);
 
   return (
     <div className={styles.formWrapper}>
