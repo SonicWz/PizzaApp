@@ -17,6 +17,24 @@ const Form = ({ title, submitTitle, handleClick }: IForm) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
+  const [message, setMessage] = useState('');
+
+  const emailValidation = () => {
+    const regEx = /[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,8}(.[a-z{2,8}])?/g;
+    if (regEx.test(email)) {
+      setMessage('');
+      handleClick(email, pass);
+    } else if (!regEx.test(email) && email !== '""') {
+      setMessage('Email is Not Valid');
+    } else {
+      setMessage('');
+    }
+  };
+
+  const handleOnChange = (e: any) => {
+    setEmail(e.target.value);
+  };
+
   return (
     <form className={styles.form}>
       <h2 className={styles.form__title}>{title}</h2>
@@ -24,7 +42,7 @@ const Form = ({ title, submitTitle, handleClick }: IForm) => {
         className={styles.form__field}
         type="email"
         value={email}
-        onChange={(e) => { setEmail(e.target.value); }}
+        onChange={(e) => { handleOnChange(e); }}
         placeholder="email"
       />
       <input
@@ -36,10 +54,11 @@ const Form = ({ title, submitTitle, handleClick }: IForm) => {
       />
       <button
         className={classNames(commonStyles.btn, commonStyles.btn_action)}
-        onClick={(e) => { e.preventDefault(); handleClick(email, pass); }}
+        onClick={(e) => { e.preventDefault(); emailValidation() }}
       >
         {submitTitle}
       </button>
+      <p className="message">{message}</p>
     </form>
   );
 };
