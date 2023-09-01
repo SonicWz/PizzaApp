@@ -31,7 +31,7 @@ const Form = ({ title, submitTitle, handleClick }: IForm) => {
         className={styles.form__field}
         type="password"
         value={pass}
-        onChange={(e) => { setPass(e.target.value); }}
+        onChange={(e) => {setPass(e.target.value); }}
         placeholder="Пароль"
       />
       <button

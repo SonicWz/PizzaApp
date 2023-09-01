@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { useAppDispatch } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useAuth } from '../../hooks/useAuth';
 
 import styles from './Form.module.scss';
@@ -14,7 +14,9 @@ const AuthPage = () => {
   const signInUser = (email: string, password: string) => {
     dispatch(signIn({ email, password }));
   };
-  const [error] = useAuth();
+  useAuth();
+
+  const {error} = useAppSelector(state => state.auth);
 
   const handleTransition = () => {
     dispatch(clearError());

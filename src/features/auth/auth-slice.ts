@@ -20,8 +20,8 @@ export const signIn = createAsyncThunk(
         id: response.user.uid
       };
       return user;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(`Ошибка: ${e}`);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
     }
   }
 )
@@ -39,8 +39,8 @@ export const signUp = createAsyncThunk(
         id: response.user.uid
       };
       return user;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(`Ошибка: ${e}`);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
     }
   }
 )
@@ -88,9 +88,19 @@ export const authSlice = createSlice({
     builder.addCase(signIn.pending, (state, action) => {
       state.isLoading = true;
     });
-    builder.addCase(signIn.rejected, (state, action) => {
+    builder.addCase(signIn.rejected, (state, action: any) => {
       state.isLoading = false;
-      state.error = action.error.message;
+      
+      let error = '';
+      switch (action.payload.code) {
+        case ('auth/missing-password'): { error = 'Неправильный логин/пароль'; break; }
+        case ('auth/wrong-password'): { error = 'Неправильный логин/пароль'; break; }
+        case ('auth/invalid-email'): { error = 'Неправильный логин/пароль'; break; }
+        case ('auth/weak-password'): { error = 'Неправильный логин/пароль'; break; }
+        default: { break; }
+      }
+      state.error = error;  
+      debugger
     });
 
     builder.addCase(signUp.fulfilled, (state, action) => {
@@ -103,9 +113,17 @@ export const authSlice = createSlice({
     builder.addCase(signUp.pending, (state, action) => {
       state.isLoading = true;
     });
-    builder.addCase(signUp.rejected, (state, action) => {
+    builder.addCase(signUp.rejected, (state, action: any) => {
       state.isLoading = false;
-      state.error = action.error.message;
+      let error = '';
+      switch (action.payload.code) {
+        case 'auth/missing-password': { error = 'Не указан пароль'; break; }
+        case 'auth/invalid-email': { error = 'Недопустимый email'; break; }
+        case 'auth/weak-password': { error = 'Пароль должен быть не менее 6 символов'; break; }
+        default: { break; }
+      }
+      state.error = error;
+      debugger
     });
   },
 });

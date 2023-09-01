@@ -17,6 +17,8 @@ const AppRouter = () => {
       {
         !email?
           <>
+            <Route path="/register" element={<SignUpPage />}
+            />
             <Route path="/*" element={<AuthPage />}
             />
           </>
