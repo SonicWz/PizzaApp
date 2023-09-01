@@ -7,7 +7,7 @@ import { useAppSelector } from '../../hooks/redux';
 
 import { calculateTotal, decrementProductCount, incrementProductCount, removeProduct } from './cart-slice';
 
-import styles from './cart.module.css'
+import styles from './cart.module.scss';
 
 type CartItemType = {
   product: IProduct

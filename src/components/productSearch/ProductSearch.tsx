@@ -2,7 +2,7 @@ import { IFilterState } from '../../types';
 
 import Input from '../UI/input/input';
 
-import styles from './ProductSearch.module.css';
+import styles from './ProductSearch.module.scss';
 
 interface IProductSearchType {
   filter: IFilterState,

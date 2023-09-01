@@ -1,5 +1,5 @@
 import Header from '../components/header/Header';
-import commonStyles from '../styles/commonStyles.module.css';
+import commonStyles from '../styles/commonStyles.module.scss';
 
 const ErrorPage = () => {
   return (

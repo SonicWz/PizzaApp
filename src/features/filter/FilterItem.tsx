@@ -1,8 +1,8 @@
 import Button from '../../components/UI/button/button';
 
-import commonStyles from '../../styles/commonStyles.module.css';
+import commonStyles from '../../styles/commonStyles.module.scss';
 
-import styles from './filter.module.css';
+import styles from './filter.module.scss';
 
 type FilterItemType = {
   title: string,

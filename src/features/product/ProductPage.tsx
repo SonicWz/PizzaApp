@@ -7,11 +7,11 @@ import { calculateTotal } from '../cart/cart-slice';
 import ProductItem from '../../components/ProductItem/ProductItem';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
-import commonStyles from '../../styles/commonStyles.module.css';
+import commonStyles from '../../styles/commonStyles.module.scss';
 
 import Loader from '../../components/UI/Loader/Loader';
 
-import styles from './productPage.module.css';
+import styles from './productPage.module.scss';
 
 import { fetchProductById } from './product-slice';
 

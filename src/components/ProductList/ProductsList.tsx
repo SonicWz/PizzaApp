@@ -6,9 +6,9 @@ import { IProduct } from '../../types';
 
 import ProductItem from '../ProductItem/ProductItem';
 
-import commonStyles from '../../styles/commonStyles.module.css';
+import commonStyles from '../../styles/commonStyles.module.scss';
 
-import styles from './productList.module.css';
+import styles from './productList.module.scss';
 
 type ProductsListType = {
   products: Array<IProduct>,

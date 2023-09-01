@@ -2,9 +2,9 @@ import { useState } from 'react';
 
 import classNames from 'classnames';
 
-import commonStyles from '../../styles/commonStyles.module.css';
+import commonStyles from '../../styles/commonStyles.module.scss';
 
-import styles from './Form.module.css';
+import styles from './Form.module.scss';
 
 interface IForm {
   title: string,

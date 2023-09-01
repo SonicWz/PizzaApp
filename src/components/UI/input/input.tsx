@@ -1,6 +1,6 @@
 import React, { LegacyRef } from 'react';
 
-import style from './input.module.css';
+import style from './input.module.scss';
 
 type InputType = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,

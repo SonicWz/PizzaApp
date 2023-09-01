@@ -5,12 +5,11 @@ import { useDispatch } from 'react-redux';
 
 import { addProduct, calculateTotal } from '../../features/cart/cart-slice';
 import { IProduct } from '../../types';
-import { IRootState } from '../../types';
 
 import { useAppSelector } from '../../hooks/redux';
 import ProductControls from '../ProductControls/ProductControls';
 
-import styles from './productItem.module.css';
+import styles from './productItem.module.scss';
 
 
 type ProductItemType = {

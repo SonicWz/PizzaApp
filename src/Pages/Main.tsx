@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import commonStyles from '../styles/commonStyles.module.css';
+import commonStyles from '../styles/commonStyles.module.scss';
 
 import ProductsList from '../components/ProductList/ProductsList';
 import Header from '../components/header/Header';

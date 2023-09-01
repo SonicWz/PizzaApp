@@ -7,7 +7,7 @@ import { IFilterState, sortOptionsType } from '../../types';
 import FilterItem from './FilterItem';
 import { setActiveTypeFilter, setIsSortPopupIsVisible } from './filter-slice';
 
-import styles from './filter.module.css';
+import styles from './filter.module.scss';
 
 type ProductFilterType = {
   filter: IFilterState,

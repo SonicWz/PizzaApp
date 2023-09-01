@@ -1,14 +1,12 @@
-import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { useAuth } from '../../hooks/useAuth';
 
 import { signUp } from './auth-slice';
 
-import styles from './Form.module.css';
+import styles from './Form.module.scss';
 
-import AuthPage from './AuthPage';
 import Form from './Form';
 
 const SignUpPage = () => {

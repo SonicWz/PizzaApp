@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import { IProduct } from '../../types';
 import { IRootState } from '../../types';
 
-import commonStyles from '../../styles/commonStyles.module.css';
+import commonStyles from '../../styles/commonStyles.module.scss';
 
-import styles from './productControls.module.css';
+import styles from './productControls.module.scss';
 import { useAppSelector } from '../../hooks/redux';
 
 interface IProductControls {

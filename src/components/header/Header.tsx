@@ -14,9 +14,9 @@ import { logOut } from '../../features/auth/auth-slice';
 
 import ProductSearch from '../productSearch/ProductSearch';
 
-import commonStyles from '../../styles/commonStyles.module.css';
+import commonStyles from '../../styles/commonStyles.module.scss';
 
-import styles from './header.module.css';
+import styles from './header.module.scss';
 
 
 interface IHeader {

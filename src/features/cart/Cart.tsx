@@ -6,9 +6,9 @@ import Header from '../../components/header/Header';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
-import commonStyles from '../../styles/commonStyles.module.css';
+import commonStyles from '../../styles/commonStyles.module.scss';
 
-import styles from './cart.module.css';
+import styles from './cart.module.scss';
 
 import CartItem from './CartItem';
 import { calculateTotal, clearCart } from './cart-slice';
