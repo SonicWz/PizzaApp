@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .cart {
   padding: 20px 60px;
   width: 70vw;
@@ -28,6 +29,7 @@
   color: #ddd;
   transition: all 0.5s ease;
 }
+
 .btnTrash:hover {
   color: #000;
 }
@@ -105,20 +107,27 @@
   border: 1px solid transparent;
 }
 
-.product__countDecrementBtn, .product__countIncrementBtn {
+.product__countDecrementBtn,
+.product__countIncrementBtn {
   color: #fe5f1e;
   border-color: #fe5f1e;
   background-color: transparent;
 }
-.product__countDecrementBtn:hover, .product__countIncrementBtn:hover {
+
+.product__countDecrementBtn:hover,
+.product__countIncrementBtn:hover {
   background-color: #fe5f1e;
   color: #fff;
 }
-.product__countDecrementBtn[disabled], .product__countIncrementBtn[disabled] {
+
+.product__countDecrementBtn[disabled],
+.product__countIncrementBtn[disabled] {
   opacity: 0.2;
   cursor: auto;
 }
-.product__countDecrementBtn[disabled]:hover, .product__countIncrementBtn[disabled]:hover {
+
+.product__countDecrementBtn[disabled]:hover,
+.product__countIncrementBtn[disabled]:hover {
   background-color: transparent;
   color: #fe5f1e;
 }
@@ -133,6 +142,7 @@
   color: #ddd;
   border-color: #ddd;
 }
+
 .product__removeBtn:hover {
   color: #fff;
   background-color: #000;
@@ -145,13 +155,15 @@
   justify-content: space-between;
 }
 
-.cart__total, .cart__controls {
+.cart__total,
+.cart__controls {
   display: flex;
   justify-content: space-between;
   margin: 20px 0;
 }
 
-.cart__totalProducts, .cart__totalPrice {
+.cart__totalProducts,
+.cart__totalPrice {
   font-size: 20px;
 }
 
@@ -164,10 +176,13 @@
   color: #fe5f1e;
   font-weight: 700;
 }
+
 .cart__totalPriceCount .fa-rub {
   margin-left: 6px;
 }
+.removeBtnWrap{
 
+}
 
 
 @media all and (max-width: 950px) {
@@ -176,5 +191,44 @@
   }
   .cart {
     width: 100%;
+  }
+  .product__info {
+    width: initial;
+  }
+}
+@media all and (max-width: 650px) {
+  .cart__item {
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+  .removeBtnWrap{
+    position: absolute;
+    top: 10px;
+    right: 1%;
+  }
+  .product__img {
+    width: 80%;
+  }
+  .product__link {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media all and (max-width: 550px) {
+  .cart {
+    padding: 10px 20px;
+    width: 85%;
+  }
+  .cart__item {
+    padding: 10px 0;
+  }
+  .cart__total{
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cart__controls{
+    gap: 10px;
   }
 }

@@ -22,7 +22,6 @@ type filterArrayType = {
 
 const ProductFilter = ({ filter, SetFilter, SetFilterType, sortOptions }: ProductFilterType) => {
   const dispatch = useAppDispatch();
-
   const filterArray: filterArrayType[] = [
     {
       title: 'Все',
@@ -99,7 +98,7 @@ const ProductFilter = ({ filter, SetFilter, SetFilterType, sortOptions }: Produc
           <span className={styles.sort__selected}
             ref={sortSpan}
             onClick={getSortPopup}
-          > {titleOfSortedBy ? titleOfSortedBy.title : null} </span>
+          > {titleOfSortedBy && <span>{titleOfSortedBy.title} {titleOfSortedBy.icon}</span>}  </span>
           {isSortPopupIsVisible ?
             <ul className={styles.sort__selectVisible}>
               {sortOptions.map((elem) => {
@@ -109,7 +108,7 @@ const ProductFilter = ({ filter, SetFilter, SetFilterType, sortOptions }: Produc
                   `${styles.sort__optionVisible}`
                 }
                 onClick={(e: React.MouseEvent) => onChangeSort(e, elem.value)}
-                >{elem.title}</li>
+                >{elem.title} {elem.icon}</li>
               })
               }
             </ul>

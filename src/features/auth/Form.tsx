@@ -58,7 +58,7 @@ const Form = ({ title, submitTitle, handleClick }: IForm) => {
       >
         {submitTitle}
       </button>
-      <p className="message">{message}</p>
+      {message && <p className={commonStyles.errorTitle}>{message}</p>}
     </form>
   );
 };

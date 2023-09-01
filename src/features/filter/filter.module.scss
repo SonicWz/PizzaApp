@@ -90,8 +90,30 @@
 @media all and (max-width: 850px) {
   .filter__categories {
     flex-direction: row;
+    justify-content: center;
     flex-wrap: wrap;
     width: 100%;
     gap: 10px;
+  }
+}
+@media all and (max-width: 500px) {
+  .filter {
+    padding: 10px 10px;
+    gap: 10px
+  } 
+  .filter__sort {
+    margin-left: 0px;
+    margin-top: 5px;
+  }
+}
+@media all and (max-width: 350px) {
+  .filter {
+    padding: 5px 5px;
+  } 
+  .filter__sort {
+    flex-direction: column;
+  }
+  .sort__selected {
+    margin: 5px 0;
   }
 }

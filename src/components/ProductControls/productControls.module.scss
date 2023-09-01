@@ -69,3 +69,12 @@ span.active, span.active {
   font-size: 16px;
   transition: all 0.5s ease;
 }
+
+@media all and (max-width: 475px) {
+  .item__price {
+    font-size: 1.3em;
+  }
+  .item__price .fa-rub {
+    font-size: 1.3em;
+  }
+}

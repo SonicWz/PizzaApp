@@ -17,7 +17,7 @@ import { fetchProducts } from '../features/product/product-slice';
 import Loader from '../components/UI/Loader/Loader';
 import { useAuth } from '../hooks/useAuth';
 
-
+import { IoArrowUp, IoArrowDown } from "react-icons/io5";
 
 const Main = () => {
   const dispatch = useAppDispatch();
@@ -43,10 +43,11 @@ const Main = () => {
   const sortedAndSearchedProducts: IProduct[] = useSearchedAndSortedAndFilteredProducts(products, filter.sort, filter.searchQuery, filter.type);
 
   const sortOptions: Array<sortOptionsType> = [
-    { 'value': 'title-ascending', 'title': 'По названию (по возрастанию)' },
-    { 'value': 'title-descending', 'title': 'По названию (по убыванию)' },
-    { 'value': 'price-ascending', 'title': 'По цене (по возрастанию)' },
-    { 'value': 'price-descending', 'title': 'По цене (по убыванию)' },
+    // { 'value': 'title-ascending', 'title': 'По названию (по возрастанию)' },
+    { 'value': 'title-ascending', 'title': 'По названию', 'icon': <IoArrowUp /> },
+    { 'value': 'title-descending', 'title': 'По названию', 'icon': <IoArrowDown /> },
+    { 'value': 'price-ascending', 'title': 'По цене', 'icon': <IoArrowUp /> },
+    { 'value': 'price-descending', 'title': 'По цене', 'icon': <IoArrowDown /> },
   ];
 
   const onSetFilter = (filter: IFilterState) => {

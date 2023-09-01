@@ -26,8 +26,9 @@
 }
 
 .errorTitle {
-  font-size: 22px;
+  font-size: 1.2em;
   padding: 10px 20px;
+  color: #fe5f1e;
 }
 .link{
   color: #fe5f1e;
@@ -90,5 +91,9 @@
     border-radius: 0;
   }
 }
-
+@media all and (max-width: 480px) {
+  .category {
+    padding: 10px 10px;
+  }
+}
 /*# sourceMappingURL=styles.css.map */

@@ -11,7 +11,9 @@
 }
 
 .item__img {
+  width: 100%;
   max-width: 420px;
+  min-width: 200px;
 }
 
 .item__title {
@@ -19,4 +21,10 @@
   font-size: 24px;
   margin: 10px 0;
   color: #000;
+}
+
+@media all and (max-width: 480px) {
+  .item__img {
+    transform: translateX(10px);
+  }
 }

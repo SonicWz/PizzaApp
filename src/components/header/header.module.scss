@@ -122,3 +122,10 @@ button.userCart__cartLink {
     width: 90%;
   }
 }
+
+@media all and (max-width: 650px) {
+  .header {
+    padding: 20px 10px 10px;
+    gap: 12px;
+  }
+}

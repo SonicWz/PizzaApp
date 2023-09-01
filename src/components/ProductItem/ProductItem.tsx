@@ -41,7 +41,8 @@ const ProductItem = ({ thisProduct }: ProductItemType) => {
 
   return (
     <li className={styles.category__item}>
-      <a className={styles.category__link} href={thisProduct.title}
+      <a className={styles.category__link} href={`/products/${thisProduct.id}`}
+      // <a className={styles.category__link} href={thisProduct.title}
         onClick={OnOpenProduct}
       >
         <img src={thisProduct.src} alt={thisProduct.title} className={styles.item__img} />

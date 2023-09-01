@@ -7,5 +7,6 @@ export interface IFilterState {
 }
 export type sortOptionsType = {
   value: string,
-  title: string
+  title: string,
+  icon: JSX.Element
 }
