@@ -12,7 +12,7 @@ interface PaginationSlice {
 
 const initialState: PaginationSlice = {
   totalPages: 1,
-  limit: 4,
+  limit: 6,
   page: 1,
   isPaginationNeed: true
 };
@@ -33,7 +33,7 @@ export const paginationSlice = createSlice({
     setIsPaginationNeed(state, action: PayloadAction<boolean>) {
       state.isPaginationNeed = action.payload;
     },
-    setDefault(state) {
+    setDefault() {
       return initialState;
     },
   },
@@ -41,7 +41,7 @@ export const paginationSlice = createSlice({
     [fetchProducts.fulfilled.type]: (state, action: PayloadAction<any>) => {
       const totalProductsCount = Number(action.payload.headers['x-total-count']);
       state.totalPages = getPagesCount(totalProductsCount, state.limit);
-      totalProductsCount <= state.limit ? state.isPaginationNeed = false : state.isPaginationNeed = true
+      totalProductsCount <= state.limit ? state.isPaginationNeed = false : state.isPaginationNeed = true;
     }
   }
 });

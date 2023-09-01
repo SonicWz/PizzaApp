@@ -43,7 +43,6 @@ const Main = () => {
   const sortedAndSearchedProducts: IProduct[] = useSearchedAndSortedAndFilteredProducts(products, filter.sort, filter.searchQuery, filter.type);
 
   const sortOptions: Array<sortOptionsType> = [
-    // { 'value': 'title-ascending', 'title': 'По названию (по возрастанию)' },
     { 'value': 'title-ascending', 'title': 'По названию', 'icon': <IoArrowUp /> },
     { 'value': 'title-descending', 'title': 'По названию', 'icon': <IoArrowDown /> },
     { 'value': 'price-ascending', 'title': 'По цене', 'icon': <IoArrowUp /> },

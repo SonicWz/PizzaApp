@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import { IProduct } from '../../types';
-import { IRootState } from '../../types';
 
 import commonStyles from '../../styles/commonStyles.module.scss';
 
-import styles from './productControls.module.scss';
 import { useAppSelector } from '../../hooks/redux';
+
+import styles from './productControls.module.scss';
 
 interface IProductControls {
   thisProduct: IProduct,
@@ -16,24 +15,27 @@ interface IProductControls {
 }
 
 const ProductControls = ({ thisProduct, productsFromCart, AddProduct }: IProductControls) => {
-
+  
   const isProductsInCart = useAppSelector((state) => {
     if (state.cart.products.length < 1) {
       return false;
     }
     return state.cart.products;
   });
-  
+  const baseSize = 26;
+  const baseDoughType = 'normal';
+
   const [currentProductParams, setCurrentProductParams] = useState({
-    'doughType': 'normal',
-    'size': 40,
+    'doughType': baseDoughType,
+    'size': baseSize,
   });
 
   const [product, setProduct] = useState({} as IProduct);
   const [productCount, setProductCount] = useState(0);
+  const [productPrice, setProductPrice] = useState(thisProduct.price);
   let thisProductCount: IProduct[];
   let commonProductCount: number;
-
+  
   useEffect(() => {
     setProduct(() => ({
       ...thisProduct,
@@ -63,19 +65,20 @@ const ProductControls = ({ thisProduct, productsFromCart, AddProduct }: IProduct
       ...prevState,
       'size': size
     }));
+    setProductPrice(Math.ceil(thisProduct.price * ((size)/baseSize)));
   };
 
   if (productsFromCart.length > 0) {
     thisProductCount = productsFromCart.filter((elem) => elem.id === thisProduct.id);
-
+    
     commonProductCount = thisProductCount.reduce((acc, elem) => {
       acc = acc + elem.count;
       return acc;
     }, 0);
+    
   } else {
     commonProductCount = 0;
   }
-
   return (
     <>
       <div className={styles.item__details}>
@@ -102,10 +105,10 @@ const ProductControls = ({ thisProduct, productsFromCart, AddProduct }: IProduct
         </div>
       </div>
       <div className={styles.item__controls}>
-        <div className={styles.item__price}>от {thisProduct.price}<i className="fa fa-rub" aria-hidden="true"></i></div>
+        <div className={styles.item__price}>от {productPrice}<i className="fa fa-rub" aria-hidden="true"></i></div>
         <button className={`${commonStyles.btn} ${styles.item__add}`}
           onClick={onAddProduct}
-          disabled={productCount >= 9}
+          disabled={commonProductCount >= 9}
         >+ Добавить
           {isProductsInCart && productsFromCart.find((elem) => elem.id === thisProduct.id) ?
             <span className={styles.item__addedCount}>

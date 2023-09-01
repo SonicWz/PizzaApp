@@ -66,7 +66,7 @@ const Cart = () => {
                   </div>
                   <div className={styles.cart__controls}>
                     <button onClick={onBack}
-                      className={`${commonStyles.btn} ${commonStyles.btn_inaction}`}>На главную</button>
+                      className={`${commonStyles.btn}`}>На главную</button>
                     <button className={`${commonStyles.btn} ${commonStyles.btn_action}`}>Оплатить сейчас</button>
                   </div>
                 </div>

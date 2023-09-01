@@ -35,14 +35,27 @@ const ProductItem = ({ thisProduct }: ProductItemType) => {
   };
 
   const onAddProduct = (product: IProduct) => {
-    dispatch(addProduct(product));
+    let finalPrice = 0;
+    switch (product.size) {
+      ////////исправить формулу!
+      case 26: { finalPrice = product.price; break; }
+      case 30: { finalPrice = product.price * 1.1; break; }
+      case 40: { finalPrice = product.price * 1.4; break; }
+      default: finalPrice = product.price; break;
+    };
+
+    let totalProduct = {
+      ...product,
+      price: finalPrice
+    };
+    dispatch(addProduct(totalProduct));
     dispatch(calculateTotal());
+    
   };
 
   return (
     <li className={styles.category__item}>
       <a className={styles.category__link} href={`/products/${thisProduct.id}`}
-      // <a className={styles.category__link} href={thisProduct.title}
         onClick={OnOpenProduct}
       >
         <img src={thisProduct.src} alt={thisProduct.title} className={styles.item__img} />
