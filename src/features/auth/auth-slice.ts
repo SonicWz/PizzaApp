@@ -91,13 +91,18 @@ export const authSlice = createSlice({
     builder.addCase(signIn.rejected, (state, action: any) => {
       state.isLoading = false;
       let error = '';
-      switch (action.payload.code) {
-        case ('auth/missing-password'): { error = 'Неправильный логин/пароль'; break; }
-        case ('auth/wrong-password'): { error = 'Неправильный логин/пароль'; break; }
-        case ('auth/invalid-email'): { error = 'Неправильный логин/пароль'; break; }
-        case ('auth/weak-password'): { error = 'Неправильный логин/пароль'; break; }
-        default: { break; }
+      if (action.payload.code){
+        switch (action.payload.code) {
+          case ('auth/missing-password'): { error = 'Неправильный логин/пароль'; break; }
+          case ('auth/wrong-password'): { error = 'Неправильный логин/пароль'; break; }
+          case ('auth/invalid-email'): { error = 'Неправильный логин/пароль'; break; }
+          case ('auth/weak-password'): { error = 'Неправильный логин/пароль'; break; }
+          default: { break; }
+        }
+      } else{
+        error = 'Неизвестная ошибка';
       }
+      
       state.error = error;  
     });
 
@@ -114,11 +119,15 @@ export const authSlice = createSlice({
     builder.addCase(signUp.rejected, (state, action: any) => {
       state.isLoading = false;
       let error = '';
-      switch (action.payload.code) {
-        case 'auth/missing-password': { error = 'Не указан пароль'; break; }
-        case 'auth/invalid-email': { error = 'Недопустимый email'; break; }
-        case 'auth/weak-password': { error = 'Пароль должен быть не менее 6 символов'; break; }
-        default: { break; }
+      if (action.payload.code){
+        switch (action.payload.code) {
+          case 'auth/missing-password': { error = 'Не указан пароль'; break; }
+          case 'auth/invalid-email': { error = 'Недопустимый email'; break; }
+          case 'auth/weak-password': { error = 'Пароль должен быть не менее 6 символов'; break; }
+          default: { break; }
+        }
+      } else{
+        error = 'Неизвестная ошибка'
       }
       state.error = error;
     });
