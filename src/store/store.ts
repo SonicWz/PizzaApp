@@ -9,6 +9,7 @@ import filterReducer from '../features/filter/filter-slice';
 
 import { productsReducer } from '../features/product/product-slice';
 import { authReducer } from '../features/auth/auth-slice';
+import searchSlice from '../features/search/search-slice';
 
 
 
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   pagination: paginationReducer,
   filter: filterReducer,
   cart: cartReducer,
+  search: searchSlice
 });
 
 const persistConfig = {

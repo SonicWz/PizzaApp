@@ -23,5 +23,9 @@ export default class ProductsService {
     const response = await axios.get<IProduct>(`https://scythe-mud-mascara.glitch.me/products/${productId}`);
     return response;
   }
+  static async getProductByName(productName: string | undefined) {
+    const response = await axios.get<IProduct[]>(`https://scythe-mud-mascara.glitch.me/products?title_like=${productName}`);
+    return response;
+  }
 
 }

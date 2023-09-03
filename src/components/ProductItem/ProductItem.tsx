@@ -35,22 +35,8 @@ const ProductItem = ({ thisProduct }: ProductItemType) => {
   };
 
   const onAddProduct = (product: IProduct) => {
-    let finalPrice = 0;
-    switch (product.size) {
-      ////////исправить формулу!
-      case 26: { finalPrice = product.price; break; }
-      case 30: { finalPrice = product.price * 1.1; break; }
-      case 40: { finalPrice = product.price * 1.4; break; }
-      default: finalPrice = product.price; break;
-    };
-
-    let totalProduct = {
-      ...product,
-      price: finalPrice
-    };
-    dispatch(addProduct(totalProduct));
+    dispatch(addProduct(product));
     dispatch(calculateTotal());
-    
   };
 
   return (

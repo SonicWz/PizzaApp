@@ -17,6 +17,8 @@ import ProductSearch from '../productSearch/ProductSearch';
 import commonStyles from '../../styles/commonStyles.module.scss';
 
 import styles from './header.module.scss';
+import { setSearchQuery } from '../../features/search/search-slice';
+import { fetchProductByName } from '../../features/product/product-slice';
 
 
 interface IHeader {
@@ -29,10 +31,11 @@ const Header = ({ isSearchFieldIsRequired = true }: IHeader) => {
   const { email } = useAppSelector(state => state.auth);
   const { totalCount, totalPrice } = useAppSelector(state => state.cart);
   const { filter } = useAppSelector(state => state);
+  const { searchQuery } = useAppSelector(state => state.search);
 
-  const onSetFilter = (filter: IFilterState) => {
-    dispatch(setFilter(filter));
-    filter.searchQuery !== '' ? dispatch(setIsPaginationNeed(false)) : dispatch(setIsPaginationNeed(true));
+  const onSetFilter = (searchQuery: string) => {
+    dispatch(setSearchQuery({searchQuery}));
+    dispatch(fetchProductByName(searchQuery));
   };
   const onCartClick = () => {
     navigate('/cart');
@@ -55,7 +58,7 @@ const Header = ({ isSearchFieldIsRequired = true }: IHeader) => {
       <div className={styles.search}>
         {isSearchFieldIsRequired ?
           <ProductSearch
-            filter={filter}
+            searchQuery={searchQuery}
             SetFilter={onSetFilter}
           />
           :

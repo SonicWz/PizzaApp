@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getPagesCount } from '../../utils/pages';
-import { fetchProducts } from '../product/product-slice';
+import { fetchProductByName, fetchProducts } from '../product/product-slice';
 
 interface PaginationSlice {
   totalPages: number,
@@ -40,6 +40,11 @@ export const paginationSlice = createSlice({
   extraReducers: {
     [fetchProducts.fulfilled.type]: (state, action: PayloadAction<any>) => {
       const totalProductsCount = Number(action.payload.headers['x-total-count']);
+      state.totalPages = getPagesCount(totalProductsCount, state.limit);
+      totalProductsCount <= state.limit ? state.isPaginationNeed = false : state.isPaginationNeed = true;
+    },
+    [fetchProductByName.fulfilled.type]: (state, action: PayloadAction<any>) => {
+      const totalProductsCount = Number(action.payload.data.length);
       state.totalPages = getPagesCount(totalProductsCount, state.limit);
       totalProductsCount <= state.limit ? state.isPaginationNeed = false : state.isPaginationNeed = true;
     }

@@ -30,7 +30,8 @@ span.active, span.active {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 26px;
+  position: relative;
 }
 
 .item__price {
@@ -45,7 +46,7 @@ span.active, span.active {
 
 .item__add {
   border-color: #fe5f1e;
-  background: transparent;
+  background-color: transparent;
   color: #fe5f1e;
   font-weight: 600;
 }
@@ -54,9 +55,25 @@ span.active, span.active {
   background-color: #fe5f1e;
   color: #fff;
 }
+
+.item__add_inaction{
+  color: #ddd;
+  border-color: #ddd;
+  background-color: transparent;
+}
+.item__add_inaction:hover{
+  color: #ddd;
+  border-color: #ddd;
+  background-color: transparent;
+}
+
 .item__add:hover .item__addedCount {
   background-color: #fff;
   color: #fe5f1e;
+}
+.item__add_inaction:hover .item__addedCount {
+  background-color: #fe5f1e; 
+  color: #fff;
 }
 
 .item__addedCount {
@@ -69,7 +86,12 @@ span.active, span.active {
   font-size: 16px;
   transition: all 0.5s ease;
 }
-
+.maxCountError{
+  position: absolute;
+  top: -23px;
+  left: 0;
+  color: red;
+}
 @media all and (max-width: 475px) {
   .item__price {
     font-size: 1.3em;

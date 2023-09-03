@@ -7,7 +7,7 @@ import Header from '../components/header/Header';
 import Pagination from '../components/UI/Pagination/Pagination';
 import { getPagesArray } from '../utils/pages';
 import { setDefault, setPage } from '../features/pagination/pagination-slice';
-import ProductFilter from '../features/filter/ProductFilter';
+import ProductFilter, { filterArray } from '../features/filter/ProductFilter';
 import { setFilter, setTypeFilter } from '../features/filter/filter-slice';
 import { useSearchedAndSortedAndFilteredProducts } from '../hooks/useProducts';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
@@ -49,6 +49,7 @@ const Main = () => {
     { 'value': 'price-descending', 'title': 'По цене', 'icon': <IoArrowDown /> },
   ];
 
+
   const onSetFilter = (filter: IFilterState) => {
     dispatch(setFilter(filter));
   };
@@ -63,6 +64,12 @@ const Main = () => {
     dispatch(fetchProducts({ limit, page, type }));
   }, []);
 
+  let categoryTitle = '';
+  let categoryTitleElement = filterArray.find((elem) => elem.type === filter.type);
+  if (categoryTitleElement) {
+    categoryTitle = categoryTitleElement.type === ''? 'Все пиццы' :  categoryTitleElement.title;
+  }
+  
   return (
     <>
       <div className={commonStyles.wrapper}>
@@ -88,7 +95,7 @@ const Main = () => {
                 :
                 <ProductsList
                   products={sortedAndSearchedProducts}
-                  title={'Все пиццы'}
+                  title={categoryTitle}
                 />
               }
             </article>

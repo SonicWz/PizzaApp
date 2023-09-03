@@ -7,6 +7,7 @@ import commonStyles from '../../styles/commonStyles.module.scss';
 import { useAppSelector } from '../../hooks/redux';
 
 import styles from './productControls.module.scss';
+import { calculateTotalPrice } from '../../utils/calculateTotalPrice';
 
 interface IProductControls {
   thisProduct: IProduct,
@@ -49,6 +50,7 @@ const ProductControls = ({ thisProduct, productsFromCart, AddProduct }: IProduct
 
     AddProduct({
       ...thisProduct,
+      price: productPrice,
       ...currentProductParams,
     });
   };
@@ -65,7 +67,7 @@ const ProductControls = ({ thisProduct, productsFromCart, AddProduct }: IProduct
       ...prevState,
       'size': size
     }));
-    setProductPrice(Math.ceil(thisProduct.price * ((size)/baseSize)));
+    setProductPrice(calculateTotalPrice(thisProduct.price, baseSize, size));
   };
 
   if (productsFromCart.length > 0) {
@@ -105,8 +107,9 @@ const ProductControls = ({ thisProduct, productsFromCart, AddProduct }: IProduct
         </div>
       </div>
       <div className={styles.item__controls}>
-        <div className={styles.item__price}>от {productPrice}<i className="fa fa-rub" aria-hidden="true"></i></div>
-        <button className={`${commonStyles.btn} ${styles.item__add}`}
+      {(commonProductCount >= 9) && <span className={styles.maxCountError}>Выбрано максимальное количество</span>}
+        <div className={styles.item__price}>{productPrice}<i className="fa fa-rub" aria-hidden="true"></i></div>
+        <button className={ (commonProductCount >= 9)? `${commonStyles.btn} ${styles.item__add} ${styles.item__add_inaction}` : `${commonStyles.btn} ${styles.item__add}`}
           onClick={onAddProduct}
           disabled={commonProductCount >= 9}
         >+ Добавить
@@ -117,6 +120,7 @@ const ProductControls = ({ thisProduct, productsFromCart, AddProduct }: IProduct
           }
         </button>
       </div>
+      
     </>
   );
 };

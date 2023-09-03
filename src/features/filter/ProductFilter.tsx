@@ -5,9 +5,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { IFilterState, sortOptionsType } from '../../types';
 
 import FilterItem from './FilterItem';
-import { setActiveTypeFilter, setIsSortPopupIsVisible } from './filter-slice';
+import { setActiveTypeFilter, setFilter, setIsSortPopupIsVisible } from './filter-slice';
 
 import styles from './filter.module.scss';
+import ProductFinder from '../../components/productFinder/ProductFinder';
+import { setIsPaginationNeed } from '../pagination/pagination-slice';
 
 type ProductFilterType = {
   filter: IFilterState,
@@ -20,34 +22,35 @@ type filterArrayType = {
   type: string
 }
 
+export const filterArray: filterArrayType[] = [
+  {
+    title: 'Все',
+    type: ''
+  },
+  {
+    title: 'Мясные',
+    type: 'meat'
+  },
+  {
+    title: 'Вегетарианские',
+    type: 'vegetarian'
+  },
+  {
+    title: 'Гриль',
+    type: 'grill'
+  },
+  {
+    title: 'Острые',
+    type: 'spicy'
+  },
+  {
+    title: 'Закрытые',
+    type: 'closed'
+  },
+];
+
 const ProductFilter = ({ filter, SetFilter, SetFilterType, sortOptions }: ProductFilterType) => {
   const dispatch = useAppDispatch();
-  const filterArray: filterArrayType[] = [
-    {
-      title: 'Все',
-      type: ''
-    },
-    {
-      title: 'Мясные',
-      type: 'meat'
-    },
-    {
-      title: 'Вегетарианские',
-      type: 'vegetarian'
-    },
-    {
-      title: 'Гриль',
-      type: 'grill'
-    },
-    {
-      title: 'Острые',
-      type: 'spicy'
-    },
-    {
-      title: 'Закрытые',
-      type: 'closed'
-    },
-  ];
 
   const { activeTypeFilter, sort: sortFilter, isSortPopupIsVisible } = useAppSelector(state => state.filter)
 
@@ -78,6 +81,12 @@ const ProductFilter = ({ filter, SetFilter, SetFilterType, sortOptions }: Produc
     return () => document.removeEventListener('click', onClick);
   }, [dispatch]);
 
+  const onSetFilter = (filter: IFilterState) => {
+    dispatch(setFilter(filter));
+    filter.searchQuery !== '' ? dispatch(setIsPaginationNeed(false)) : dispatch(setIsPaginationNeed(true));
+  };
+
+
   return (
     <>
       <div className={styles.filter}>
@@ -107,13 +116,19 @@ const ProductFilter = ({ filter, SetFilter, SetFilterType, sortOptions }: Produc
                   :
                   `${styles.sort__optionVisible}`
                 }
-                onClick={(e: React.MouseEvent) => onChangeSort(e, elem.value)}
+                  onClick={(e: React.MouseEvent) => onChangeSort(e, elem.value)}
                 >{elem.title} {elem.icon}</li>
               })
               }
             </ul>
             : null
           }
+        </div>
+        <div className={styles.finderWrap}>
+          <ProductFinder
+            filter={filter}
+            SetFilter={onSetFilter}
+          />
         </div>
       </div>
     </>

@@ -50,6 +50,19 @@ export const fetchProductById = createAsyncThunk(
 );
 
 
+export const fetchProductByName = createAsyncThunk(
+  '@@product/fetchProductByName',
+  async (productName: string | undefined, thunkAPI) => {
+    try {
+      const response = await ProductsService.getProductByName(productName);
+      return response;
+
+    } catch (e) {
+      return thunkAPI.rejectWithValue(`Ошибка: ${e}`);
+    }
+  }
+);
+
 interface ProductSlice {
   products: IProduct[],
   currentProduct: IProduct,
@@ -91,6 +104,7 @@ export const productsSlice = createSlice({
       state.isLoading = false;
       state.error = action.error.message;
     });
+
     builder.addCase(fetchProductById.fulfilled, (state, action) => {
       state.isLoading = false;
       state.error = '';
@@ -102,6 +116,20 @@ export const productsSlice = createSlice({
     builder.addCase(fetchProductById.rejected, (state, action) => {
       state.isLoading = false;
     });
+
+    builder.addCase(fetchProductByName.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = '';
+      state.products = action.payload.data;
+    });
+    builder.addCase(fetchProductByName.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchProductByName.rejected, (state, action) => {
+      state.isLoading = false;
+    });
+
+    
   },
 });
 
