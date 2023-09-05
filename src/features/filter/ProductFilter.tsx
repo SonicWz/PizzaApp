@@ -4,12 +4,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 import { IFilterState, sortOptionsType } from '../../types';
 
+import ProductFinder from '../../components/productFinder/ProductFinder';
+
+import { setIsPaginationNeed } from '../pagination/pagination-slice';
+
 import FilterItem from './FilterItem';
 import { setActiveTypeFilter, setFilter, setIsSortPopupIsVisible } from './filter-slice';
 
 import styles from './filter.module.scss';
-import ProductFinder from '../../components/productFinder/ProductFinder';
-import { setIsPaginationNeed } from '../pagination/pagination-slice';
 
 type ProductFilterType = {
   filter: IFilterState,
@@ -52,10 +54,10 @@ export const filterArray: filterArrayType[] = [
 const ProductFilter = ({ filter, SetFilter, SetFilterType, sortOptions }: ProductFilterType) => {
   const dispatch = useAppDispatch();
 
-  const { activeTypeFilter, sort: sortFilter, isSortPopupIsVisible } = useAppSelector(state => state.filter)
+  const { activeTypeFilter, sort: sortFilter, order: sortOrder, isSortPopupIsVisible } = useAppSelector(state => state.filter);
 
   const onSetActiveFilterType = (activeTypeFilter: string) => {
-    dispatch(setActiveTypeFilter(activeTypeFilter))
+    dispatch(setActiveTypeFilter(activeTypeFilter));
   };
   const onSetFilterType = (typeFilter: string) => {
     SetFilterType(typeFilter);
@@ -63,13 +65,14 @@ const ProductFilter = ({ filter, SetFilter, SetFilterType, sortOptions }: Produc
   const getSortPopup = () => {
     dispatch(setIsSortPopupIsVisible(true));
   };
-  const onChangeSort = (e: React.MouseEvent, value: string) => {
-    SetFilter({ ...filter, sort: value });
+  const onChangeSort = (e: React.MouseEvent, value: {sort: string, order: string}) => {
+    SetFilter({ ...filter, sort: value.sort, order: value.order });
     dispatch(setIsSortPopupIsVisible(false));
-  }
-  const titleOfSortedBy = sortOptions.find(elem => elem.value === sortFilter)
+  };
 
-  const sortSpan = useRef<HTMLSpanElement | null>(null);
+  const titleOfSortedBy = sortOptions.find(elem => elem.value.sort === sortFilter);
+
+  const sortSpan = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -86,7 +89,6 @@ const ProductFilter = ({ filter, SetFilter, SetFilterType, sortOptions }: Produc
     filter.searchQuery !== '' ? dispatch(setIsPaginationNeed(false)) : dispatch(setIsPaginationNeed(true));
   };
 
-
   return (
     <>
       <div className={styles.filter}>
@@ -98,37 +100,33 @@ const ProductFilter = ({ filter, SetFilter, SetFilterType, sortOptions }: Produc
               SetFilterType={onSetFilterType}
               activeTypeFilter={activeTypeFilter}
               onSetActiveFilterType={onSetActiveFilterType}
-            />
+            />;
           })
           }
         </ul>
         <div className={styles.filter__sort}>
-          <label className={styles.sort__label} htmlFor="sort">Сортировка по:</label>
-          <span className={styles.sort__selected}
-            ref={sortSpan}
-            onClick={getSortPopup}
-          > {titleOfSortedBy && <span>{titleOfSortedBy.title} {titleOfSortedBy.icon}</span>}  </span>
-          {isSortPopupIsVisible ?
-            <ul className={styles.sort__selectVisible}>
-              {sortOptions.map((elem) => {
-                return <li className={(sortFilter === elem.value) ?
-                  `${styles.sort__optionVisible} ${styles.sort__optionVisible_active}`
-                  :
-                  `${styles.sort__optionVisible}`
-                }
+          <div className={styles.filter__sortInner}>
+            <label className={styles.sort__label} htmlFor="sort">Сортировка по:</label>
+            <div className={styles.sort__selected}
+              ref={sortSpan}
+              onClick={getSortPopup}
+             > {titleOfSortedBy && <span>{titleOfSortedBy.title} {titleOfSortedBy.icon}</span>}  </div>
+            {isSortPopupIsVisible ?
+              <ul className={styles.sort__selectVisible}>
+                {sortOptions.map((elem) => {
+                  return <li className={(sortFilter === elem.value.sort && sortOrder === elem.value.order) ?
+                    `${styles.sort__optionVisible} ${styles.sort__optionVisible_active}`
+                    :
+                    `${styles.sort__optionVisible}`
+                  }
                   onClick={(e: React.MouseEvent) => onChangeSort(e, elem.value)}
-                >{elem.title} {elem.icon}</li>
-              })
-              }
-            </ul>
-            : null
-          }
-        </div>
-        <div className={styles.finderWrap}>
-          <ProductFinder
-            filter={filter}
-            SetFilter={onSetFilter}
-          />
+                  >{elem.title} {elem.icon}</li>;
+                })
+                }
+              </ul>
+              : null
+            }
+          </div>
         </div>
       </div>
     </>

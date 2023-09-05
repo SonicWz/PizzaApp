@@ -5,16 +5,20 @@ import { IProduct } from '../types/productTypes';
 export interface IgetAll {
   page: number,
   limit: number,
-  type?: string
+  type?: string,
+  sort?: string | undefined,
+  order?: string | undefined,
 }
 
 export default class ProductsService {
-  static async getAll({ page, limit, type }: IgetAll) {
+  static async getAll({ page, limit, type, sort, order }: IgetAll) {
     const response = await axios.get<IProduct[]>('https://scythe-mud-mascara.glitch.me/products', {
       params: {
         _page: page,
         _limit: limit,
-        type: type
+        type: type,
+        _sort: sort,
+        _order: order,
       }
     });
     return response;

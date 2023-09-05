@@ -6,24 +6,30 @@ import ProductsService, { IgetAll } from '../../API/ProductsService';
 type fetchTypes = {
   limit: number,
   page: number,
-  type?: string
+  type?: string,
+  sort?: string,
+  order?: string,
 }
 
 export const fetchProducts = createAsyncThunk(
   '@@product/fetchProducts',
   async (options: fetchTypes, thunkAPI) => {
-    const { limit, page, type } = options;
+    const { limit, page, type, sort, order } = options;
     let fetchParams = {} as IgetAll;
     if (type === '') {
       fetchParams = {
         page: page,
-        limit: limit
+        limit: limit,
+        sort: sort,
+        order: order,
       };
     } else {
       fetchParams = {
         page: page,
         limit: limit,
-        type: type
+        type: type,
+        sort: sort,
+        order: order,
       };
     }
     try {

@@ -1,11 +1,6 @@
 
 .filter {
   padding: 40px 60px 20px;
-
-
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px
@@ -35,13 +30,17 @@
 
 .filter__sort {
   margin-left: 20px;
+  min-width: 35%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  position: relative;
-  min-width: 35%;
 }
-
+.filter__sortInner{
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 .sort__label {
   margin-right: 5px;
   font-weight: 600;
@@ -57,12 +56,13 @@
   color: #fe5f1e;
   font-size: 16px;
   cursor: pointer;
+  position: relative;
 }
 
 .sort__selectVisible {
   position: absolute;
   top: 100%;
-  left: 0%;
+  right: 0%;
   background-color: #fff;
   padding-top: 10px;
   padding-bottom: 10px;

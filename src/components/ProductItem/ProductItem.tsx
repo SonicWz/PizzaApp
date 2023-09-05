@@ -41,17 +41,22 @@ const ProductItem = ({ thisProduct }: ProductItemType) => {
 
   return (
     <li className={styles.category__item}>
-      <a className={styles.category__link} href={`/products/${thisProduct.id}`}
-        onClick={OnOpenProduct}
-      >
-        <img src={thisProduct.src} alt={thisProduct.title} className={styles.item__img} />
+      <div className={styles.item__content}>
+        <a className={styles.category__link} href={`/products/${thisProduct.id}`}
+          onClick={OnOpenProduct}
+        >
+          <img src={thisProduct.src} alt={thisProduct.title} className={styles.item__img} />
+        </a>
         <div className={styles.item__title}>{thisProduct.title}</div>
-      </a>
-      <ProductControls
-        thisProduct={thisProduct}
-        productsFromCart={productsFromCart}
-        AddProduct={onAddProduct}
-      />
+        <div className={styles.item__description}>{thisProduct.description}</div>
+      </div>
+      <div className={styles.item__footer}>
+        <ProductControls
+          thisProduct={thisProduct}
+          productsFromCart={productsFromCart}
+          AddProduct={onAddProduct}
+        />
+      </div>
     </li>
   );
 };

@@ -32,7 +32,14 @@ const Main = () => {
 
   const getPage = (page: number): void => {
     dispatch(setPage(page));
-    dispatch(fetchProducts({ limit, page, type }));
+    dispatch(fetchProducts({ 
+      limit, 
+      page, 
+      type,
+      sort: filter.sort,
+      order: filter.order,
+     }));
+
     window.scroll({
       top: 0,
       left: 0,
@@ -41,23 +48,36 @@ const Main = () => {
   };
 
   const sortedAndSearchedProducts: IProduct[] = useSearchedAndSortedAndFilteredProducts(products, filter.sort, filter.searchQuery, filter.type);
-
+   
   const sortOptions: Array<sortOptionsType> = [
-    { 'value': 'title-ascending', 'title': 'По названию', 'icon': <IoArrowUp /> },
-    { 'value': 'title-descending', 'title': 'По названию', 'icon': <IoArrowDown /> },
-    { 'value': 'price-ascending', 'title': 'По цене', 'icon': <IoArrowUp /> },
-    { 'value': 'price-descending', 'title': 'По цене', 'icon': <IoArrowDown /> },
+    { 'value': {sort: 'title', order: 'ASC'}, 'title': 'По названию', 'icon': <IoArrowUp /> },
+    { 'value': {sort: 'title', order: 'DESC'}, 'title': 'По названию', 'icon': <IoArrowDown /> },
+    { 'value': {sort: 'price', order: 'ASC'}, 'title': 'По цене', 'icon': <IoArrowUp /> },
+    { 'value': {sort: 'price', order: 'DESC'}, 'title': 'По цене', 'icon': <IoArrowDown /> },
   ];
 
 
   const onSetFilter = (filter: IFilterState) => {
     dispatch(setFilter(filter));
+    dispatch(fetchProducts({
+      limit,
+      page,
+      type,
+      sort: filter.sort,
+      order: filter.order,
+    }));
   };
   const onSetFilterType = (type: string) => {
     dispatch(setTypeFilter(type));
     dispatch(setDefault());
     const page = 1;
-    dispatch(fetchProducts({ limit, page, type }));
+    dispatch(fetchProducts({ 
+      limit, 
+      page, 
+      type,
+      sort: filter.sort,
+      order: filter.order,
+     }));
   };
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import classNames from 'classnames';
 
-import { setFilter } from '../../features/filter/filter-slice';
+import { setDefaultFilter, setFilter } from '../../features/filter/filter-slice';
 import logo from '../../assets/pizza_logo.svg';
 import { setIsPaginationNeed } from '../../features/pagination/pagination-slice';
 import { IFilterState } from '../../types';
@@ -34,6 +34,7 @@ const Header = ({ isSearchFieldIsRequired = true }: IHeader) => {
   const { searchQuery } = useAppSelector(state => state.search);
 
   const onSetFilter = (searchQuery: string) => {
+    dispatch(setDefaultFilter());
     dispatch(setSearchQuery({searchQuery}));
     dispatch(fetchProductByName(searchQuery));
   };

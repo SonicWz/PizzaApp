@@ -1,6 +1,7 @@
 export interface IProduct {
   id: number,
   title: string,
+  description: string,
   type: string,
   src: string,
   price: number,
@@ -13,6 +14,7 @@ export interface IProduct {
 export const initialProduct = {
   id: 0,
   title: '',
+  description: '',
   type: '',
   src: '',
   price: 0,

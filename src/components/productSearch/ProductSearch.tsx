@@ -1,4 +1,7 @@
+import React, { useEffect, useState } from 'react';
+
 import { IFilterState } from '../../types';
+import { useDebouncedCallback  } from 'use-debounce';
 
 import Input from '../UI/input/input';
 
@@ -9,7 +12,21 @@ interface IProductSearchType {
   SetFilter: (searchQuery: string) => void
 }
 
+
 const ProductSearch = ({ searchQuery, SetFilter }: IProductSearchType) => {
+
+  const [inputValue, setInputValue] = useState('');
+
+  const debounced = useDebouncedCallback(
+    (value) => {
+      SetFilter( value );
+    }, 500 );
+
+  const onInputChange = (val: string) => {
+    setInputValue(val);
+    debounced(val);
+  };
+
   return (
     <>
       <Input type="text"
@@ -17,8 +34,8 @@ const ProductSearch = ({ searchQuery, SetFilter }: IProductSearchType) => {
         placeholder="Поиск пиццы..."
         name="searchInput"
         id="searchInput"
-        onChange={(e) => SetFilter( e.target.value )}
-        value={searchQuery}
+        onChange={(e) => onInputChange( e.target.value )}
+        value={inputValue}
       />
     </>
   );
