@@ -4,8 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 import { IFilterState, sortOptionsType } from '../../types';
 
-import ProductFinder from '../../components/productFinder/ProductFinder';
-
 import { setIsPaginationNeed } from '../pagination/pagination-slice';
 
 import FilterItem from './FilterItem';

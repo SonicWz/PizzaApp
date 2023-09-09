@@ -15,9 +15,11 @@
 }
 
 .pagination__item {
-  display: block;
-  padding: 8px 14px;
-  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 8px 13px;
   cursor: pointer;
   margin-right: 12px;
   color: #fe5f1e;
@@ -45,6 +47,24 @@
   background-color: #fe5f1e;
   color: #fff;
   font-weight: 700;
+}
+.pagination__item_unselectable{
+  cursor: auto;
+  border: none;
+  &:hover{
+    color: #fe5f1e;
+    background-color: transparent;
+  }
+}
+.pagination__item_inaction{
+  color: #ddd;
+  border-color: #ddd;
+  background-color: transparent;
+}
+.pagination__item_inaction:hover{
+  color: #ddd;
+  border-color: #ddd;
+  background-color: transparent;
 }
 
 
