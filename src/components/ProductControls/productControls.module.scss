@@ -30,7 +30,7 @@ span.active, span.active {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 26px;
+  margin-top: 34px;
   position: relative;
 }
 
@@ -87,16 +87,17 @@ span.active, span.active {
   transition: all 0.5s ease;
 }
 .maxCountError{
+  font-size: 1em;
   position: absolute;
-  top: -23px;
+  top: -28px;
   left: 0;
-  color: red;
+  color: #fe5f1e;
 }
 @media all and (max-width: 475px) {
   .item__price {
-    font-size: 1.3em;
+    font-size: 1.5em;
   }
   .item__price .fa-rub {
-    font-size: 1.3em;
+    font-size: 1.5em;
   }
 }

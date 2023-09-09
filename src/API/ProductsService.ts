@@ -8,10 +8,11 @@ export interface IgetAll {
   type?: string,
   sort?: string | undefined,
   order?: string | undefined,
+  title_like?: string | undefined,
 }
 
 export default class ProductsService {
-  static async getAll({ page, limit, type, sort, order }: IgetAll) {
+  static async getAll({ page, limit, type, sort, order, title_like }: IgetAll) {
     const response = await axios.get<IProduct[]>('https://scythe-mud-mascara.glitch.me/products', {
       params: {
         _page: page,
@@ -19,6 +20,7 @@ export default class ProductsService {
         type: type,
         _sort: sort,
         _order: order,
+        title_like: title_like,
       }
     });
     return response;

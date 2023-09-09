@@ -12,8 +12,8 @@ interface FilterSlice {
 }
 
 const initialState: FilterSlice = {
-  sort: 'title',
-  order: 'ASC',
+  sort: 'по умолчанию',
+  order: '',
   searchQuery: '',
   type: '',
   activeTypeFilter: '',

@@ -43,8 +43,17 @@
   text-align: left;
   padding: 20px;
 }
+@media all and (max-width: 600px) {
+  .category__item {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+}
 @media all and (max-width: 480px) {
   .item__img {
     transform: translateX(10px);
+  }
+  .item__footer{
+    padding: 5px 0px;
   }
 }

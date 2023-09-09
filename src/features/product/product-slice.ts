@@ -9,12 +9,13 @@ type fetchTypes = {
   type?: string,
   sort?: string,
   order?: string,
+  title_like?: string,
 }
 
 export const fetchProducts = createAsyncThunk(
   '@@product/fetchProducts',
   async (options: fetchTypes, thunkAPI) => {
-    const { limit, page, type, sort, order } = options;
+    const { limit, page, type, sort, order, title_like } = options;
     let fetchParams = {} as IgetAll;
     if (type === '') {
       fetchParams = {
@@ -22,6 +23,7 @@ export const fetchProducts = createAsyncThunk(
         limit: limit,
         sort: sort,
         order: order,
+        title_like: title_like,
       };
     } else {
       fetchParams = {
@@ -30,6 +32,7 @@ export const fetchProducts = createAsyncThunk(
         type: type,
         sort: sort,
         order: order,
+        title_like: title_like,
       };
     }
     try {

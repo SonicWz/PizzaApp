@@ -68,8 +68,8 @@ const ProductFilter = ({ filter, SetFilter, SetFilterType, sortOptions }: Produc
     dispatch(setIsSortPopupIsVisible(false));
   };
 
-  const titleOfSortedBy = sortOptions.find(elem => elem.value.sort === sortFilter);
-
+  const titleOfSortedBy = sortOptions.find(elem => (elem.value.sort === sortFilter) && (elem.value.order === sortOrder)  ) || {title: 'по умолчанию', icon: ''};
+  
   const sortSpan = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {

@@ -1,10 +1,8 @@
-
 .filter {
   padding: 40px 60px 20px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px
-
 }
 .finderWrap{
   width: 40%;
@@ -109,6 +107,9 @@
   }
 }
 @media all and (max-width: 850px) {
+  .filter {
+    padding: 40px 10px 20px;
+  }
   .filter__categories {
     flex-direction: row;
     justify-content: center;

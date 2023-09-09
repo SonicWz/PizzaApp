@@ -18,6 +18,8 @@ import Loader from '../components/UI/Loader/Loader';
 import { useAuth } from '../hooks/useAuth';
 
 import { IoArrowUp, IoArrowDown } from "react-icons/io5";
+import { setDefaultSearchQuery } from '../features/search/search-slice';
+import { useGetPage } from '../hooks/useGetPage';
 
 const Main = () => {
   const dispatch = useAppDispatch();
@@ -25,35 +27,37 @@ const Main = () => {
   const { totalPages, isPaginationNeed, page, limit } = useAppSelector(state => state.pagination);
   const { filter } = useAppSelector(state => state);
   const { type } = useAppSelector(state => state.filter);
+  const { searchQuery } = useAppSelector(state => state.search);
 
   useAuth();
 
   const pagesArray = getPagesArray(totalPages);
 
-  const getPage = (page: number): void => {
-    dispatch(setPage(page));
-    dispatch(fetchProducts({ 
-      limit, 
-      page, 
-      type,
-      sort: filter.sort,
-      order: filter.order,
-     }));
+  const getPage = useGetPage();
+  // const getPage = (page: number): void => {
+  //   dispatch(setPage(page));
+  //   dispatch(fetchProducts({ 
+  //     limit, 
+  //     page, 
+  //     type,
+  //     sort: filter.sort,
+  //     order: filter.order,
+  //    }));
 
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-  };
+  //   window.scroll({
+  //     top: 0,
+  //     left: 0,
+  //     behavior: 'smooth',
+  //   });
+  // };
 
   const sortedAndSearchedProducts: IProduct[] = useSearchedAndSortedAndFilteredProducts(products, filter.sort, filter.searchQuery, filter.type);
    
   const sortOptions: Array<sortOptionsType> = [
-    { 'value': {sort: 'title', order: 'ASC'}, 'title': 'По названию', 'icon': <IoArrowUp /> },
-    { 'value': {sort: 'title', order: 'DESC'}, 'title': 'По названию', 'icon': <IoArrowDown /> },
-    { 'value': {sort: 'price', order: 'ASC'}, 'title': 'По цене', 'icon': <IoArrowUp /> },
-    { 'value': {sort: 'price', order: 'DESC'}, 'title': 'По цене', 'icon': <IoArrowDown /> },
+    { 'value': {sort: 'title', order: 'ASC'}, 'title': 'по названию', 'icon': <IoArrowUp /> },
+    { 'value': {sort: 'title', order: 'DESC'}, 'title': 'по названию', 'icon': <IoArrowDown /> },
+    { 'value': {sort: 'price', order: 'ASC'}, 'title': 'по цене', 'icon': <IoArrowUp /> },
+    { 'value': {sort: 'price', order: 'DESC'}, 'title': 'по цене', 'icon': <IoArrowDown /> },
   ];
 
 
@@ -65,11 +69,15 @@ const Main = () => {
       type,
       sort: filter.sort,
       order: filter.order,
+      title_like: searchQuery,
     }));
+    
   };
+
   const onSetFilterType = (type: string) => {
     dispatch(setTypeFilter(type));
     dispatch(setDefault());
+    dispatch(setDefaultSearchQuery());
     const page = 1;
     dispatch(fetchProducts({ 
       limit, 
@@ -77,11 +85,20 @@ const Main = () => {
       type,
       sort: filter.sort,
       order: filter.order,
+      title_like: '',
      }));
+     
   };
 
   useEffect(() => {
-    dispatch(fetchProducts({ limit, page, type }));
+    dispatch(fetchProducts({ 
+      limit, 
+      page, 
+      type,
+      sort: filter.sort,
+      order: filter.order,
+      title_like: searchQuery,
+    }));
   }, []);
 
   let categoryTitle = '';

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import { setDefaultFilter, setFilter } from '../../features/filter/filter-slice';
 import logo from '../../assets/pizza_logo.svg';
-import { setIsPaginationNeed } from '../../features/pagination/pagination-slice';
+import { setDefault, setIsPaginationNeed, setPage } from '../../features/pagination/pagination-slice';
 import { IFilterState } from '../../types';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -17,12 +17,13 @@ import ProductSearch from '../productSearch/ProductSearch';
 import commonStyles from '../../styles/commonStyles.module.scss';
 
 import styles from './header.module.scss';
-import { setSearchQuery } from '../../features/search/search-slice';
+import { setDefaultSearchQuery, setSearchQuery } from '../../features/search/search-slice';
 import { fetchProductByName } from '../../features/product/product-slice';
+import { useGetPage } from '../../hooks/useGetPage';
 
 
 interface IHeader {
-  isSearchFieldIsRequired?: boolean
+  isSearchFieldIsRequired?: boolean,
 }
 
 const Header = ({ isSearchFieldIsRequired = true }: IHeader) => {
@@ -30,19 +31,23 @@ const Header = ({ isSearchFieldIsRequired = true }: IHeader) => {
   const navigate = useNavigate();
   const { email } = useAppSelector(state => state.auth);
   const { totalCount, totalPrice } = useAppSelector(state => state.cart);
-  const { filter } = useAppSelector(state => state);
   const { searchQuery } = useAppSelector(state => state.search);
+  const getPage = useGetPage();
 
   const onSetFilter = (searchQuery: string) => {
     dispatch(setDefaultFilter());
     dispatch(setSearchQuery({searchQuery}));
     dispatch(fetchProductByName(searchQuery));
+    dispatch(setPage(1));
   };
   const onCartClick = () => {
     navigate('/cart');
   };
   const onLogoClick = () => {
     navigate('/');
+    dispatch(setDefaultSearchQuery());
+    dispatch(setDefaultFilter());
+    getPage(1);
   };
   const logOutUser = () => {
     dispatch(logOut());
@@ -56,16 +61,14 @@ const Header = ({ isSearchFieldIsRequired = true }: IHeader) => {
           <p className={styles.logo__description}>cамая вкусная пицца</p>
         </div>
       </div >
-      <div className={styles.search}>
-        {isSearchFieldIsRequired ?
-          <ProductSearch
-            searchQuery={searchQuery}
-            SetFilter={onSetFilter}
-          />
-          :
-          null
-        }
-      </div>
+      {isSearchFieldIsRequired ?
+        <ProductSearch
+          searchQuery={searchQuery}
+          SetFilter={onSetFilter}
+        />
+        :
+        null
+      }
       {email &&
         <div className={styles.authInfo}>
           <div className={styles.userEmail}>{email}</div>

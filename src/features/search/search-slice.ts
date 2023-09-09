@@ -17,9 +17,15 @@ export const searchSlice = createSlice({
     setSearchQuery(state, action: PayloadAction<ISearchSlice>) {
       state.searchQuery = action.payload.searchQuery;
     },
+    setDefaultSearchQuery(){
+      return initialState;
+    }
   }
 });
 
 export default searchSlice.reducer;
 
-export const { setSearchQuery } = searchSlice.actions;
+export const { 
+  setSearchQuery,
+  setDefaultSearchQuery
+ } = searchSlice.actions;
